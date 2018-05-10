@@ -1,0 +1,20 @@
+#define ADC1 A0 
+#define ADC2 A1
+#define ADC4 A3 
+void setup() {
+
+Serial.begin(115200);
+}
+
+void loop() {
+
+Serial.println(analogRead(ADC1));
+delay(100); 
+
+Serial.println(analogRead(ADC2));
+delay(100);
+
+Serial.println(analogRead(ADC4));
+delay(100);
+
+}
