@@ -1,0 +1,36 @@
+delete(instrfindall);
+comport = serial('COM3','BaudRate',115200);
+
+fopen(comport);
+
+for i=1:100
+y(i)=fscanf(comport,'%d');
+
+z(i)=fscanf(comport,'%d');
+
+k(i)=fscanf(comport,'%d');
+
+
+a1=(y(i)/3.72);
+a2=(z(i)/3.72);
+a3=(k(i)/3.72);
+
+
+
+T1=[cos(a1) -sin(a1) 0 0;sin(a1) cos(a1) 0 0;0 0 1 h1;0 0 0 1];%% BURADAKİ H1 DEGERİNİ DEGİŞTİRİN H1 DEGERİ İLK UZUNLUK
+T2=[cos(a2) -sin(a2) 0 0;0 0 -1 -d2;sin(a2) cos(a2) 0 0;0 0 0 1];%%BURDAKİ D2 DEGERİNİ DEGİŞTİRİN BAŞINDAKİ - DURSUN  İKİNCİ KOLUN UZUNLUGU
+T3=[1 0 0 0;0 0 1 (I2+I3);0 -1 0 0;0 0 0 1];%%I2 VE I3 DEGERİNİ DEGİŞTİRİN 3. KOLUN TOPLAM UZUNLUGU
+Z=T1*T2*T3;
+
+
+
+
+
+Px = 'Px %f. Py %f  Pz %f';
+A1 = Z(13);
+A2 = Z(14);
+A3= Z(15);
+Konum = sprintf(Px,A1,A2,A3)
+
+
+end
